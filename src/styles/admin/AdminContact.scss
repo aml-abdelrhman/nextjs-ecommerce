@@ -1,0 +1,30 @@
+.messagesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.messageCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    margin-bottom: 0.3rem;
+  }
+
+  .email {
+    font-size: 0.9rem;
+    color: gray;
+  }
+
+  .message {
+    margin: 0.7rem 0;
+  }
+
+  .date {
+    font-size: 0.8rem;
+    color: #999;
+  }
+}

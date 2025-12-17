@@ -1,0 +1,85 @@
+@import "@/styles/globals.scss";
+
+.payment-wrapper {
+  @extend .container;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+.payment-heading {
+  font-family: $font-heading;
+  font-size: 2rem;
+  font-weight: 600;
+  color: $color-navy;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.payment-info {
+  text-align: center;
+  color: $color-gray-dark;
+}
+
+.payment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.payment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid $color-light-ggray;
+  border-radius: 12px;
+  padding: 1rem;
+  background: white;
+  transition: transform $transition;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.payment-cardHolder {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.payment-cardNumber {
+  font-size: 0.9rem;
+  color: $color-gray-dark;
+  margin-bottom: 0.25rem;
+}
+
+.payment-default {
+  color: #16a34a;
+  font-weight: 500;
+}
+
+.payment-removeBtn {
+  background: transparent;
+  border: none;
+  color: $color-orange;
+  cursor: pointer;
+  font-weight: 500;
+  transition: opacity $transition;
+
+  &:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .payment-removeBtn {
+    align-self: flex-end;
+  }
+}

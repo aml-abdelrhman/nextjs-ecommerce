@@ -1,0 +1,10 @@
+@import "@/styles/globals.scss";
+
+.products-content {
+  display: flex;
+  flex-direction: column;
+  gap: $gap * 2;
+  padding: $gap;
+  max-width: $max-width;
+  margin: 0 auto;
+}

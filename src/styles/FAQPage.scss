@@ -1,0 +1,53 @@
+@import "@/styles/globals.scss";
+
+.faqPage {
+        margin: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    color: $color-navy;
+    margin-bottom: 2rem;
+  }
+
+  .faqList {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    .faqItem {
+      border: 1px solid $color-light-gray;
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+
+      .question {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        background: $color-bg;
+        border: none;
+        text-align: left;
+        font-weight: 600;
+        color: $color-navy;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      .arrow {
+        transition: transform 0.3s ease;
+      }
+
+      .arrow.open {
+        transform: rotate(180deg);
+      }
+
+      .answer {
+        padding: 1rem 1.5rem;
+        font-size: 0.95rem;
+        color: $color-light-gray;
+        background: #fafafa;
+      }
+    }
+  }
+}

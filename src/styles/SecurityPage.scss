@@ -1,0 +1,101 @@
+@import "@/styles/globals.scss";
+
+.security-wrapper {
+  @extend .container;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.security-heading {
+  font-family: $font-heading;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: $color-navy;
+}
+
+.security-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: $color-gray-dark;
+  margin-top: 2rem;
+}
+
+.security-spinner {
+  animation: spin 1s linear infinite;
+}
+
+.security-error {
+  text-align: center;
+  color: red;
+  margin-top: 2rem;
+}
+
+.security-card {
+  background: white;
+  border: 1px solid $color-light-ggray;
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  transition: transform $transition;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  h3 {
+    font-family: $font-heading;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    color: $color-navy;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: $color-gray-dark;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.security-status {
+  display: inline-block;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 500;
+
+  &.verified {
+    background: #dcfce7;
+    color: #16a34a;
+  }
+
+  &.unverified {
+    background: #fee2e2;
+    color: #dc2626;
+  }
+}
+
+.security-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: $color-orange;
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+@media (max-width: 640px) {
+  .security-wrapper {
+    margin: 1.5rem auto;
+  }
+
+  .security-card {
+    padding: 1rem;
+  }
+}

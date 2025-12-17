@@ -1,0 +1,111 @@
+@import "@/styles/globals.scss";
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dashboard-title {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #fecaca;
+  }
+}
+
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.3rem;
+}
+
+
+.card {
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.cardContent {
+  padding: 1.4rem;
+}
+
+
+.label {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 0.35rem;
+}
+
+.value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.orderText {
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.muted {
+  color: #9ca3af;
+}
+
+
+.dashboard-loading {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  color: #6b7280;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+@media (max-width: 640px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logoutBtn {
+    align-self: flex-end;
+  }
+}

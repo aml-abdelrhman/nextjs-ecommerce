@@ -1,0 +1,40 @@
+
+@import "@/styles/globals.scss";
+
+.adminCard {
+  background: white;
+  padding: 1.2rem 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
+
+  h3 {
+    color: $color-orange;
+    margin-bottom: 0.3rem;
+  }
+
+  p {
+    color: $color-gray-dark;
+  }
+
+  small {
+    font-size: 0.8rem;
+    color: gray;
+  }
+}
+
+.adminActions {
+  margin-top: 0.6rem;
+
+  a {
+    color: green;
+    margin-right: 10px;
+  }
+
+  button {
+    background: none;
+    color: crimson;
+    border: none;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,63 @@
+@import "@/styles/globals.scss";
+
+.filters-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 1.3rem 1.6rem;
+  margin-bottom: 0.1rem;
+  border-radius: 18px;
+  background: $color-bg;
+  box-shadow: 0 8px 24px rgba(12, 15, 20, 0.05);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    flex: 1 1 170px;
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $color-gray-dark;
+    }
+
+    input, select {
+      border: 1px solid $color-light-gray;
+      padding: 0.7rem 0.5rem;
+      border-radius: 14px;
+      background: $color-bg;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+
+      &:focus {
+        border-color: $color-orange;
+        box-shadow: 0 0 0 3px rgba($color-orange, 0.2);
+      }
+    }
+  }
+
+  .reset-btn {
+    padding: 0.65rem 1.2rem;
+    background: $color-orange;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-size: 0.9rem;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($color-orange, 10%);
+    }
+  }
+
+  .total-results {
+    width: 100%;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $color-gray-dark;
+    text-align: right;
+  }
+}

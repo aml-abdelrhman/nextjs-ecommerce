@@ -1,0 +1,120 @@
+@import "@/styles/globals.scss";
+
+.bottombar {
+  background: #fffdfd;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  position: sticky;
+  bottom: 0;
+  z-index: 999;
+
+  .bottombarContainer {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .bottombarLogo {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: $color-navy;
+    text-decoration: none;
+
+    &:hover { color: $color-orange; }
+  }
+
+  .mobileHeader {
+    display: none;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+  .bottombarHamburgerBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: #f3f4f6;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+
+    &:hover {
+      background: #e5e7eb;
+      transform: scale(1.05);
+    }
+
+    svg { color: #111827; }
+  }
+
+  .bottombarLinksWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-direction: row;
+    transition: max-height 0.35s ease, opacity 0.35s ease;
+    overflow: hidden;
+  }
+
+  .bottombarLinksWrapper.open {
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  .bottombarLinks {
+    display: flex;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+  }
+
+  .bottombarLink {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $color-navy;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover { color: $color-orange; }
+  }
+
+  .bottombarSocials {
+    display: flex;
+    gap: 0.9rem;
+    color: $color-navy;
+  }
+
+  @media(max-width: 768px) {
+    .mobileHeader { display: flex; }
+
+    .bottombarLinksWrapper {
+      flex-direction: column;
+      width: 100%;
+      max-height: 0;
+      opacity: 0;
+    }
+
+    .bottombarLinksWrapper.open {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    .bottombarLinks {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.9rem;
+      padding: 0.8rem 0;
+    }
+
+    .bottombarLink { font-size: 1rem; padding: 0.4rem 0; }
+
+    .bottombarSocials { justify-content: center; padding-top: 0.6rem; }
+  }
+}

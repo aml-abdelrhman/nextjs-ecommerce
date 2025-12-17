@@ -1,0 +1,88 @@
+@import "@/styles/globals.scss";
+
+.edit-profile-wrapper {
+  @extend .container;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+.edit-profile-heading {
+  font-family: $font-heading;
+  font-size: 2rem;
+  font-weight: 600;
+  color: $color-navy;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.edit-profile-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.edit-profile-avatarSection {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.edit-profile-avatarPreview {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: $color-light-ggray;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-profile-avatarImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.edit-profile-noImage {
+  color: $color-gray-dark;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.edit-profile-label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.edit-profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.edit-profile-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid $color-light-ggray;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.edit-profile-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 500px) {
+  .edit-profile-avatarSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

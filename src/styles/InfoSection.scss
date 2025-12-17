@@ -1,0 +1,79 @@
+@import "@/styles/globals.scss";
+
+.infoSection {
+  padding: 5rem 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &.reverse {
+    .container {
+      flex-direction: row-reverse;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .infoImage {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 14px 40px rgba(11, 37, 69, 0.15);
+    }
+  }
+
+  .infoContent {
+    flex: 1;
+    max-width: 480px;
+
+    h2 {
+      font-family: $font-heading;
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      color: $color-navy;
+      line-height: 1.3;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: $color-gray-dark;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .btnPrimary {
+      margin-top: 1rem;
+      padding: 0.85rem 2.2rem;
+      background-color: $color-orange;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 600;
+      transition: $transition;
+
+      &:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+      }
+    }
+  }
+}

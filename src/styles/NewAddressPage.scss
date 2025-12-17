@@ -1,0 +1,114 @@
+@import "@/styles/globals.scss";
+.address-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: $color-bg;
+
+  .address-form {
+    width: 100%;
+    max-width: 500px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+
+    h1 {
+      font-family: $font-heading;
+      font-weight: 700;
+      color: $color-navy;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid $color-light-ggray;
+      font-family: $font-sans;
+      font-size: 1rem;
+      transition: $transition;
+
+      &:focus {
+        outline: none;
+        border-color: $color-orange;
+        box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.2);
+      }
+    }
+
+    button {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 1rem;
+      background: $color-orange;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: $transition;
+
+      &:hover {
+        background: darken($color-orange, 5%);
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    .address-form {
+      padding: 1.5rem;
+      max-width: 90%;
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      input {
+        font-size: 0.95rem;
+        padding: 0.65rem 0.9rem;
+      }
+
+      button {
+        font-size: 0.95rem;
+        padding: 0.65rem;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+
+    .address-form {
+      padding: 1rem;
+      max-width: 100%;
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      input {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+      }
+
+      button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+      }
+    }
+  }
+}

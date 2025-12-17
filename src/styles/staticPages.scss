@@ -1,0 +1,43 @@
+@import "@/styles/globals.scss";
+
+.staticPage {
+  min-height: 100vh;
+  padding: 5rem 1rem;
+  background: $color-bg;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  .box {
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    padding: 3rem;
+    border-radius: 18px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  }
+
+  h1 {
+    font-family: $font-heading;
+    font-size: 2.2rem;
+    color: $color-navy;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: $color-gray-dark;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    margin-top: 1rem;
+    padding-left: 1.2rem;
+
+    li {
+      margin-bottom: 0.6rem;
+      color: $color-gray-dark;
+    }
+  }
+}

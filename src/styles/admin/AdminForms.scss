@@ -1,0 +1,40 @@
+@import "@/styles/globals.scss";
+
+.adminPage {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.adminPage h1 {
+  font-family: $font-heading;
+  color: $color-orange;
+  margin-bottom: 2rem;
+}
+
+.adminForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+
+  label {
+    font-weight: 600;
+    color: $color-navy;
+
+    input,
+    textarea,
+    select {
+      margin-top: 0.5rem;
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      border: 1px solid $color-light-ggray;
+      outline: none;
+
+      &:focus {
+        border-color: $color-orange;
+      }
+    }
+  }
+}

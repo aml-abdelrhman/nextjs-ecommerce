@@ -1,0 +1,111 @@
+@import "@/styles/globals.scss";
+
+.checkoutWrapper {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.heading {
+  font-family: $font-heading;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: $color-navy;
+}
+
+.checkoutLeft,
+.checkoutRight {
+  background: #fff;
+  border: 1px solid $color-light-ggray;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid $color-light-ggray;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  font-family: $font-sans;
+  transition: $transition;
+
+  &:focus {
+    border-color: $color-orange;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.2);
+  }
+}
+
+textarea.input {
+  min-height: 80px;
+  resize: vertical;
+}
+
+select.input {
+  background: #fff;
+  appearance: none;
+  cursor: pointer;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: $color-orange;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: $transition;
+
+  &:hover {
+    background: darken($color-orange, 5%);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid $color-light-ggray;
+  padding-bottom: 0.25rem;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1.5rem;
+  }
+
+  .input {
+    padding: 0.65rem 0.8rem;
+  }
+
+  .checkoutWrapper {
+    gap: 1rem;
+  }
+}

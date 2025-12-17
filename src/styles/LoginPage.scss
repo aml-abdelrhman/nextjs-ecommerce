@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@500;700&display=swap");
+
+$font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-heading: "Poppins", $font-sans;
+
+$color-bg: #f7f8fb;
+$color-orange: #ff6a00;
+$color-gray-dark: #646464;
+$transition: 0.2s ease;
+
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-bg;
+  font-family: $font-sans;
+  padding: 1rem;
+}
+
+.loginForm {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform $transition;
+
+  @media (min-width: $breakpoint-md) {
+    padding: 3rem;
+    max-width: 450px;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    max-width: 500px;
+  }
+}
+
+.loginTitle {
+  font-family: $font-heading;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+  color: #111827;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 2.25rem;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    font-size: 2.5rem;
+  }
+}
+
+.inputField {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  transition: $transition;
+
+  &:focus {
+    border-color: $color-orange;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.2);
+  }
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 1.1rem;
+  }
+}
+
+.inputError {
+  border-color: red;
+}
+
+.errorMsg {
+  font-size: 0.875rem;
+  color: red;
+  margin-top: 0.25rem;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 0.9rem;
+  }
+}
+
+.passwordWrapper {
+  position: relative;
+
+  .togglePassword {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 0.875rem;
+    color: $color-gray-dark;
+    cursor: pointer;
+
+    @media (min-width: $breakpoint-md) {
+      font-size: 0.95rem;
+    }
+  }
+}
+
+.rememberLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 0.95rem;
+  }
+}
+
+.btnPrimary {
+  padding: 0.75rem;
+  background: $color-orange;
+  color: #fff;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition;
+  border: none;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    padding: 0.85rem;
+    font-size: 1.05rem;
+  }
+}
+
+.registerText {
+  font-size: 0.875rem;
+  text-align: center;
+
+  .linkPrimary {
+    color: $color-orange;
+    text-decoration: underline;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 0.95rem;
+  }
+}

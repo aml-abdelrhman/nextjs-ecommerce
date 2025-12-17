@@ -1,0 +1,18 @@
+@import "@/styles/globals.scss";
+
+.products-page {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: $gap;
+  font-family: $font-sans;
+
+  &__title {
+    font-family: $font-heading;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $color-gray-dark;
+    margin-bottom: 1px;
+    
+
+  }
+}
