@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 
 import { Toaster } from "react-hot-toast";
-import Providers from "@/components/Providers/Providers";
+import Providers from "@/components/Providers/";
 
 import MainNavbar from "@/components/navbar/MainNavbar";
 import BottomNavbar from "@/components/navbar/BottomNavbar";

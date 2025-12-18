@@ -2,7 +2,7 @@ import { getProduct } from "@/lib/api";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import ProductCard from "@/components/products/ProductCard";
-import "@/styles/products/ProductDetails.scss";
+import styles from "@/styles/products/ProductDetailsPage.module.scss";
 
 type Props = { params: { id: string } };
 
@@ -16,23 +16,20 @@ export default async function ProductDetailsPage({ params }: Props) {
   const product: Product = await getProduct(Number(params.id));
 
   return (
-    <div className="product-details">
-      <div className="images-section">
+    <div className={styles.container}>
+      <div className={styles.imageWrapper}>
         <Image
-          className="main-image"
           src={product.thumbnail}
           alt={product.title}
           width={500}
           height={500}
         />
-        {/* إذا عندك thumbs للصور الجانبية، ضعيها هنا */}
       </div>
 
-      <div className="info-section">
+      <div className={styles.details}>
         <h1>{product.title}</h1>
-        <p className="description">{product.description}</p>
-
-        <div className="price-row">
+        <p>{product.description}</p>
+        <div className={styles.priceRow}>
           {product.discountPercentage && (
             <span className="discount">
               {Math.round(product.discountPercentage)}% OFF
@@ -40,14 +37,10 @@ export default async function ProductDetailsPage({ params }: Props) {
           )}
           <span className="price">${product.price}</span>
         </div>
-
-        <div className="rating">⭐ {product.rating}</div>
-
-        <div className="product-card-wrapper">
+        <div className={styles.rating}>⭐ {product.rating}</div>
+        <div className={styles.productCardWrapper}>
           <ProductCard product={product} />
         </div>
-
-        <button className="add-cart">Add to Cart</button>
       </div>
     </div>
   );

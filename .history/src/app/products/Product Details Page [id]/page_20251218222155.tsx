@@ -2,7 +2,7 @@ import { getProduct } from "@/lib/api";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import ProductCard from "@/components/products/ProductCard";
-import "@/styles/products/ProductDetails.scss";
+import "@/styles/products/ProductDetails.scss"; // SCSS عادي
 
 type Props = { params: { id: string } };
 

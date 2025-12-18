@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import InfoSection from "@/components/InfoSection/InfoSection";
+import InfoSection from "@/components/InfoSection";
 
 export default function AboutPage() {
   return (

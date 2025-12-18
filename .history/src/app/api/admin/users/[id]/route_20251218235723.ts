@@ -2,20 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/db";
 import User from "@/models/User";
 
-type Params = { id: string };
-
+// لا تحتاج type Context
 export async function GET(
   request: NextRequest,
-  context: { params: Promise<Params> } // ✨ يجب أن يكون Promise
+  { params }: { params: { id: string } } // خلي params object مباشر، مش Promise
 ) {
-  const { id } = await context.params; // فك الـ Promise
+  const { id } = params;
 
   try {
     await dbConnect();
     const user = await User.findById(id).select("-password");
-
     if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
-
     return NextResponse.json({ user });
   } catch (err) {
     console.error(err);
@@ -25,16 +22,14 @@ export async function GET(
 
 export async function DELETE(
   request: NextRequest,
-  context: { params: Promise<Params> }
+  { params }: { params: { id: string } }
 ) {
-  const { id } = await context.params;
+  const { id } = params;
 
   try {
     await dbConnect();
     const user = await User.findByIdAndDelete(id);
-
     if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
-
     return NextResponse.json({ message: "User deleted successfully" });
   } catch (err) {
     console.error(err);

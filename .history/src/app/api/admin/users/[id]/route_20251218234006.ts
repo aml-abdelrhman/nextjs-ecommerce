@@ -2,19 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/db";
 import User from "@/models/User";
 
-type Params = { id: string };
-
 export async function GET(
   request: NextRequest,
-  context: { params: Promise<Params> } // ✨ يجب أن يكون Promise
+  context: { params: { id: string } } // Next.js يتوقع هذا النوع الآن
 ) {
-  const { id } = await context.params; // فك الـ Promise
+  const { id } = context.params;
 
   try {
     await dbConnect();
     const user = await User.findById(id).select("-password");
 
-    if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
 
     return NextResponse.json({ user });
   } catch (err) {
@@ -25,9 +25,9 @@ export async function GET(
 
 export async function DELETE(
   request: NextRequest,
-  context: { params: Promise<Params> }
+  context: { params: { id: string } }
 ) {
-  const { id } = await context.params;
+  const { id } = context.params;
 
   try {
     await dbConnect();

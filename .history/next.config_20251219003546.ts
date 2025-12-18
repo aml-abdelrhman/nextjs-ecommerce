@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   compiler: {
     reactRemoveProperties: true,
   },
-
+  // لا تضيف turbopack: false هنا
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "cdn.dummyjson.com", pathname: "/product-images/**" },

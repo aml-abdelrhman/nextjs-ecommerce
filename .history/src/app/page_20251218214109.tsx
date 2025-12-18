@@ -11,7 +11,7 @@ export default function HomePage() {
     <main>
       <HeroCarousel />
 
-     <productTab />
+     <ProductTab />
 
       <Products />
 

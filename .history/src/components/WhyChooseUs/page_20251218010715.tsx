@@ -1,5 +1,5 @@
 import React from "react";
-import InfoSection from "@/components/InfoSection/InfoSection"; 
+import InfoSection from "@/components/InfoSection"; 
 
 const WhyChooseUsSection = () => {
   return (

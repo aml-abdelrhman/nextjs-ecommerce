@@ -6,12 +6,23 @@ const nextConfig: NextConfig = {
   compiler: {
     reactRemoveProperties: true,
   },
-
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "cdn.dummyjson.com", pathname: "/product-images/**" },
-      { protocol: "https", hostname: "images.pexels.com", pathname: "/**" },
-      { protocol: "https", hostname: "res.cloudinary.com", pathname: "/**" },
+      {
+        protocol: "https",
+        hostname: "cdn.dummyjson.com",
+        pathname: "/product-images/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
     ],
   },
   webpack(config) {
@@ -20,9 +31,6 @@ const nextConfig: NextConfig = {
       "@": path.resolve(__dirname, "src"),
     };
     return config;
-  },
-  typescript: {
-    ignoreBuildErrors: true, 
   },
 };
 
