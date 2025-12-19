@@ -1,7 +1,5 @@
-"use client";
-
 import HeroCarousel from "./HeroCarousel/HeroCarousel";
-import ProductTab from "@/components/products/productTab";
+import productTab from "@/components/products/productTab";
 import Products from "@/app/products/page";
 import About from "../components/About/page";
 import ContactForm from "../components/ContactForm/page";
@@ -13,7 +11,7 @@ export default function HomePage() {
     <main>
       <HeroCarousel />
 
-     <ProductTab />
+     <productTab />
 
       <Products />
 

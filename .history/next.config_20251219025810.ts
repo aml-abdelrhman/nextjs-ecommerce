@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
   },
 
   typescript: {
-    ignoreBuildErrors: true, 
+    ignoreBuildErrors: true, // يتجاهل أي أخطاء TypeScript وقت build
   },
 
   turbopack: {},

@@ -13,7 +13,7 @@ type Address = {
   city: string;
 };
 
-export default function EditAddressClient() {
+export default function EditAddressPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const addressId = searchParams.get("id");
@@ -44,15 +44,12 @@ export default function EditAddressClient() {
         const data: { ok: boolean; addresses: Address[]; error?: string } =
           await res.json();
 
-        if (!res.ok || !data.ok) {
+        if (!res.ok || !data.ok)
           throw new Error(data.error || "Failed to load address");
-        }
 
-        const address = data.addresses.find(a => a._id === addressId);
+        const address = data.addresses.find((a) => a._id === addressId);
 
-        if (!address) {
-          throw new Error("Address not found");
-        }
+        if (!address) throw new Error("Address not found");
 
         setForm({
           fullName: address.fullName,
@@ -86,15 +83,17 @@ export default function EditAddressClient() {
         credentials: "include",
         body: JSON.stringify({
           addressId,
-          ...form,
+          fullName: form.fullName,
+          phone: form.phone,
+          street: form.street,
+          city: form.city,
         }),
       });
 
       const data: { ok: boolean; error?: string } = await res.json();
 
-      if (!res.ok || !data.ok) {
+      if (!res.ok || !data.ok)
         throw new Error(data.error || "Failed to update address");
-      }
 
       toast.success("Address updated successfully!");
       router.push("/account/address");
@@ -117,36 +116,36 @@ export default function EditAddressClient() {
         <input
           className="editAddressInput"
           name="fullName"
+          placeholder="Full Name"
           value={form.fullName}
           onChange={handleChange}
-          placeholder="Full Name"
           required
         />
 
         <input
           className="editAddressInput"
           name="phone"
+          placeholder="Phone"
           value={form.phone}
           onChange={handleChange}
-          placeholder="Phone"
           required
         />
 
         <input
           className="editAddressInput"
           name="street"
+          placeholder="Street"
           value={form.street}
           onChange={handleChange}
-          placeholder="Street"
           required
         />
 
         <input
           className="editAddressInput"
           name="city"
+          placeholder="City"
           value={form.city}
           onChange={handleChange}
-          placeholder="City"
           required
         />
 

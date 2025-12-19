@@ -1,4 +1,3 @@
-"use client";
 
 import HeroCarousel from "./HeroCarousel/HeroCarousel";
 import ProductTab from "@/components/products/productTab";

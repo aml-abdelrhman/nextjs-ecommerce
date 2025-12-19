@@ -3,7 +3,6 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-
   compiler: {
     reactRemoveProperties: true,
   },
@@ -15,7 +14,6 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "res.cloudinary.com", pathname: "/**" },
     ],
   },
-
   webpack(config) {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
@@ -23,14 +21,9 @@ const nextConfig: NextConfig = {
     };
     return config;
   },
-
   typescript: {
     ignoreBuildErrors: true, 
   },
-
-  turbopack: {},
-
-  outputFileTracingRoot: __dirname,
 };
 
 export default nextConfig;

@@ -95,6 +95,12 @@ export default function AddressPage() {
                 <p>{addr.street}, {addr.city}</p>
               </div>
               <div style={{ display: "flex", gap: "5px" }}>
+               <Link
+                href={`/account/address/edit?id=${addr._id}`}
+                className="btnSecondary"
+                >
+                Edit
+               </Link>
                 <button
                   onClick={() => handleDelete(addr._id)}
                   disabled={deletingId === addr._id}

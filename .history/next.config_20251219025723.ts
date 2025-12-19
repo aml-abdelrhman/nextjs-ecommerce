@@ -25,11 +25,13 @@ const nextConfig: NextConfig = {
   },
 
   typescript: {
-    ignoreBuildErrors: true, 
+    ignoreBuildErrors: true, // يتجاهل أي أخطاء TypeScript وقت build
   },
 
+  // تجاوز مشاكل Turbopack + Webpack
   turbopack: {},
 
+  // يحل warning الخاص بالـ lockfiles
   outputFileTracingRoot: __dirname,
 };
 
