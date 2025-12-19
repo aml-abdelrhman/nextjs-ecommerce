@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import HeroCarousel from "./HeroCarousel/HeroCarousel";
 import ProductTab from "@/components/products/productTab";
 import Products from "@/app/products/page";
@@ -12,11 +14,8 @@ export default function HomePage() {
   return (
     <main>
       <HeroCarousel />
-
-     <ProductTab />
-
+      <ProductTab />
       <Products />
-
       <About />
       <ContactForm />
       <WhyChooseUs />
