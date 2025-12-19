@@ -31,6 +31,10 @@ const nextConfig: NextConfig = {
   turbopack: {},
 
   outputFileTracingRoot: __dirname,
+
+  experimental: {
+    runtime: "nodejs",
+  },
 };
 
 export default nextConfig;
