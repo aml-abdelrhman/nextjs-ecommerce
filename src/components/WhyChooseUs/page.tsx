@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import InfoSection from "@/components/InfoSection/InfoSection"; 
 
