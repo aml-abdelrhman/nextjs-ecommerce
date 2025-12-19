@@ -49,6 +49,11 @@ export default function CartPage() {
   const dispatch = useDispatch();
   const localCart: CartItem[] = useSelector((state: RootState) => state.cart.items);
 
+  // إضافة عنصر للعربة (يعمل حتى بدون تسجيل دخول)
+  const handleAddToCart = useCallback((item: CartItem) => {
+    dispatch(addItemLocal(item));
+    toast.success("Item added to cart!");
+  }, [dispatch]);
 
   const handleIncrease = useCallback(
     (id: string, qty: number) => {
@@ -86,6 +91,7 @@ export default function CartPage() {
 
   if (status === "loading") return <p className="loading">Loading your cart...</p>;
 
+  // المستخدم غير مسجل: تظهر رسالة تسجيل الدخول فقط
   if (!session) {
     return (
       <div className="loginPrompt">

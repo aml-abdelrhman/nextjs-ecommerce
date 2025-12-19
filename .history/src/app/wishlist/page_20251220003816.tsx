@@ -68,6 +68,7 @@ export default function WishlistPage() {
   const dispatch = useDispatch();
   const localWishlist = useSelector((state: RootState) => state.wishlist.items);
 
+  // إزالة عنصر من wishlist
   const handleRemove = useCallback(
     (id: string) => {
       dispatch(removeItemLocalWL(id));

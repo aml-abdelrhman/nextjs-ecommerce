@@ -35,13 +35,11 @@ export default function LoginPage() {
       if (data.remember) localStorage.setItem("rememberEmail", data.email);
       else localStorage.removeItem("rememberEmail");
 
-      const callbackUrl = data.email.includes("admin") ? "/admin/dashboard" : "/account";
-
       await signIn("credentials", {
         redirect: true,
         email: data.email,
         password: data.password,
-        callbackUrl,
+        callbackUrl: "/redirect", // صفحة وسيطة للتوجيه حسب الدور
       });
     } finally {
       setLoading(false);

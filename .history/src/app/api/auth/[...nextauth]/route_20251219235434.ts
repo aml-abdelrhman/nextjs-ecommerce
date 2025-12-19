@@ -18,6 +18,7 @@ declare module "next-auth" {
     role: "user" | "admin";
     name: string;
     email: string;
+    picture?: string | null;
   }
 }
 
@@ -29,12 +30,9 @@ export const authOptions: AuthOptions = {
       credentials: { email: { label: "Email", type: "email" }, password: { label: "Password", type: "password" } },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) throw new Error("Email and password required");
-
         await dbConnect();
-
         let user = await User.findOne({ email: credentials.email });
         let role: "user" | "admin" = "user";
-
         if (!user) {
           const admin = await Admin.findOne({ email: credentials.email });
           if (!admin) throw new Error("No user found");
@@ -46,7 +44,6 @@ export const authOptions: AuthOptions = {
           const isValid = await bcrypt.compare(credentials.password, user.password);
           if (!isValid) throw new Error("Incorrect password");
         }
-
         return { id: user._id.toString(), name: user.name, email: user.email, role };
       },
     }),

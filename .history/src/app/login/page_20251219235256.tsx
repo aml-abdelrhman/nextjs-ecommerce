@@ -32,10 +32,22 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginInput) => {
     setLoading(true);
     try {
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password,
+      });
+
+      if (res?.error) {
+        setLoading(false);
+        return;
+      }
+
       if (data.remember) localStorage.setItem("rememberEmail", data.email);
       else localStorage.removeItem("rememberEmail");
 
-      const callbackUrl = data.email.includes("admin") ? "/admin/dashboard" : "/account";
+      const role = (res as any)?.role || "user";
+      const callbackUrl = role === "admin" ? "/admin/dashboard" : "/account";
 
       await signIn("credentials", {
         redirect: true,

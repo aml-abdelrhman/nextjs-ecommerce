@@ -27,10 +27,11 @@ export function useCart() {
   const { data: session } = useSession();
   const token = session?.user?.token || null;
 
+  // تحميل العناصر من السيرفر فقط إذا المستخدم مسجل، وإلا يرجع empty array
   const { data: items = [], isLoading, isError } = useQuery<CartItem[]>({
     queryKey: CART_QUERY_KEY,
     queryFn: () => apiFetch<CartItem[]>("/api/cart", token),
-    enabled: !!token, 
+    enabled: !!token, // فقط لتحميل البيانات عند تسجيل الدخول
     staleTime: STALE_TIME,
     retry: 0,
   });

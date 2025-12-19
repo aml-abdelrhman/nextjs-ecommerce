@@ -74,7 +74,7 @@ export default function MainNavbar() {
               <User /> Login
             </Link>
           )}
-          <Link href="/contact" className="contactBtn">
+          <Link href="/ContactForm" className="contactBtn">
             <Mail /> Send Message
           </Link>
         </div>

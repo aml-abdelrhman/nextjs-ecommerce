@@ -68,6 +68,7 @@ export default function WishlistPage() {
   const dispatch = useDispatch();
   const localWishlist = useSelector((state: RootState) => state.wishlist.items);
 
+  // إزالة عنصر من wishlist
   const handleRemove = useCallback(
     (id: string) => {
       dispatch(removeItemLocalWL(id));
@@ -76,6 +77,7 @@ export default function WishlistPage() {
     [dispatch]
   );
 
+  // إضافة عنصر للعربة من wishlist
   const handleAddToCart = useCallback(
     (item: CartItem) => {
       dispatch(addItemLocalCart(item));
@@ -98,6 +100,7 @@ export default function WishlistPage() {
 
   if (status === "loading") return <p>Loading your wishlist...</p>;
 
+  // المستخدم غير مسجل: يظهر رسالة تسجيل الدخول
   if (!session)
     return (
       <div className="loginPrompt">

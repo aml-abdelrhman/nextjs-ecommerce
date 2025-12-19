@@ -49,6 +49,11 @@ export default function CartPage() {
   const dispatch = useDispatch();
   const localCart: CartItem[] = useSelector((state: RootState) => state.cart.items);
 
+  // إضافة عنصر للعربة (يعمل حتى بدون تسجيل دخول)
+  const handleAddToCart = useCallback((item: CartItem) => {
+    dispatch(addItemLocal(item));
+    toast.success("Item added to cart!");
+  }, [dispatch]);
 
   const handleIncrease = useCallback(
     (id: string, qty: number) => {

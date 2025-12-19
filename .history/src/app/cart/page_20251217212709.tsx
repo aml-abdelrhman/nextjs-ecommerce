@@ -10,8 +10,8 @@ import {
   decreaseQtyLocal,
   removeItemLocal,
   clearCartUI,
-  addItemLocal
 } from "@/store/cartslice";
+import { useCart } from "@/hooks/usecart";
 import toast from "react-hot-toast";
 import "@/styles/cart.scss";
 import { CartItem } from "@/types/cart";
@@ -25,20 +25,24 @@ interface CartItemProps {
 }
 
 const CartItemComponent = React.memo(
-  ({ item, onIncrease, onDecrease, onRemove }: CartItemProps) => (
-    <div className="cartItem">
-      <div className="info">
-        <div className="title">{item.title}</div>
-        <div className="qtyControls">
-          <button onClick={() => onDecrease(item.id, item.qty)}>-</button>
-          <span>{item.qty}</span>
-          <button onClick={() => onIncrease(item.id, item.qty)}>+</button>
+  ({ item, onIncrease, onDecrease, onRemove }: CartItemProps) => {
+    return (
+      <div className="cartItem">
+        <div className="info">
+          <div className="title">{item.title}</div>
+          <div className="qtyControls">
+            <button aria-label="Decrease quantity" onClick={() => onDecrease(item.id, item.qty)}>-</button>
+            <span>{item.qty}</span>
+            <button aria-label="Increase quantity" onClick={() => onIncrease(item.id, item.qty)}>+</button>
+          </div>
         </div>
+
+        <strong className="price">${(item.price * item.qty).toFixed(2)}</strong>
+
+        <button className="remove" onClick={() => onRemove(item.id)}>Remove</button>
       </div>
-      <strong className="price">${(item.price * item.qty).toFixed(2)}</strong>
-      <button className="remove" onClick={() => onRemove(item.id)}>Remove</button>
-    </div>
-  )
+    );
+  }
 );
 
 CartItemComponent.displayName = "CartItemComponent";
@@ -48,29 +52,35 @@ export default function CartPage() {
   const router = useRouter();
   const dispatch = useDispatch();
   const localCart: CartItem[] = useSelector((state: RootState) => state.cart.items);
+  const { updateQty, removeItem, clearCart } = useCart();
 
+  useEffect(() => {
+    if (status === "unauthenticated") router.push("/login");
+  }, [status, router]);
 
   const handleIncrease = useCallback(
     (id: string, qty: number) => {
       dispatch(increaseQtyLocal(id));
+      updateQty.mutate({ id, qty: qty + 1 }, { onError: () => toast.error("Failed to update quantity.") });
     },
-    [dispatch]
+    [dispatch, updateQty]
   );
 
   const handleDecrease = useCallback(
     (id: string, qty: number) => {
       if (qty <= 1) return;
       dispatch(decreaseQtyLocal(id));
+      updateQty.mutate({ id, qty: qty - 1 }, { onError: () => toast.error("Failed to update quantity.") });
     },
-    [dispatch]
+    [dispatch, updateQty]
   );
 
   const handleRemove = useCallback(
     (id: string) => {
       dispatch(removeItemLocal(id));
-      toast.success("Item removed!");
+      removeItem.mutate(id, { onSuccess: () => toast.success("Item removed!"), onError: () => toast.error("Failed to remove item.") });
     },
-    [dispatch]
+    [dispatch, removeItem]
   );
 
   const handleClearCart = useCallback(() => {
@@ -80,22 +90,19 @@ export default function CartPage() {
     }
     if (confirm("Are you sure you want to clear the cart?")) {
       dispatch(clearCartUI());
-      toast.success("Cart cleared!");
+      clearCart.mutate(undefined, { onSuccess: () => toast.success("Cart cleared!"), onError: () => toast.error("Failed to clear cart.") });
     }
-  }, [dispatch, localCart.length]);
+  }, [dispatch, clearCart, localCart.length]);
 
   if (status === "loading") return <p className="loading">Loading your cart...</p>;
 
-  if (!session) {
+  if (!session)
     return (
       <div className="loginPrompt">
-        <h1>Please login first to see your cart</h1>
-        <button className="loginBtn" onClick={() => signIn()}>
-          Login Now
-        </button>
+        <h1>Please login to view your cart</h1>
+        <button className="loginBtn" onClick={() => signIn()}>Login Now</button>
       </div>
     );
-  }
 
   const total: number = localCart.reduce((sum, item) => sum + item.price * item.qty, 0);
 

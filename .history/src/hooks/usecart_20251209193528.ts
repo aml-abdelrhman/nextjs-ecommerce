@@ -14,6 +14,7 @@ async function apiFetch<T>(url: string, token: string | null, options?: RequestI
 
   const res = await fetch(url, { ...options, headers });
 
+  if (res.status === 401) throw new Error("Unauthorized");
   if (!res.ok) {
     const text = await res.text();
     throw new Error(text || "API Error");
@@ -24,58 +25,56 @@ async function apiFetch<T>(url: string, token: string | null, options?: RequestI
 
 export function useCart() {
   const queryClient = useQueryClient();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const token = session?.user?.token || null;
+  const isReady = !!token && status === "authenticated";
 
+  
   const { data: items = [], isLoading, isError } = useQuery<CartItem[]>({
     queryKey: CART_QUERY_KEY,
     queryFn: () => apiFetch<CartItem[]>("/api/cart", token),
-    enabled: !!token, 
+    enabled: isReady,
     staleTime: STALE_TIME,
     retry: 0,
   });
 
+
   const addItem = useMutation<CartItem[], Error, CartItem>({
-    mutationFn: (item) => apiFetch<CartItem[]>("/api/cart", token, { method: "POST", body: JSON.stringify(item) }),
+    mutationFn: (item) =>
+      apiFetch<CartItem[]>("/api/cart", token, { method: "POST", body: JSON.stringify(item) }),
     onSuccess: () => {
       toast.success("Item added to cart");
       queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY });
     },
-    onError: () => {
-      toast.error("Failed to add item to cart");
-    },
   });
 
+
   const updateQty = useMutation<CartItem[], Error, { id: string; qty: number }>({
-    mutationFn: ({ id, qty }) => apiFetch<CartItem[]>("/api/cart", token, { method: "PATCH", body: JSON.stringify({ id, qty }) }),
+    mutationFn: ({ id, qty }) =>
+      apiFetch<CartItem[]>("/api/cart", token, { method: "PATCH", body: JSON.stringify({ id, qty }) }),
     onSuccess: () => {
       toast.success("Quantity updated");
       queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY });
     },
-    onError: () => {
-      toast.error("Failed to update quantity");
-    },
   });
 
+
   const removeItem = useMutation<CartItem[], Error, string>({
-    mutationFn: (id) => apiFetch<CartItem[]>("/api/cart", token, { method: "DELETE", body: JSON.stringify({ id }) }),
+    mutationFn: (id) =>
+      apiFetch<CartItem[]>("/api/cart", token, { method: "DELETE", body: JSON.stringify({ id }) }),
     onSuccess: () => {
       toast.success("Item removed");
       queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY });
     },
-    onError: () => {
-      toast.error("Failed to remove item");
-    },
   });
 
+
   const clearCart = useMutation<CartItem[], Error>({
-    mutationFn: () => apiFetch<CartItem[]>("/api/cart/clear", token, { method: "DELETE" }),
+    mutationFn: () =>
+      apiFetch<CartItem[]>("/api/cart/clear", token, { method: "DELETE" }),
     onSuccess: () => {
       toast.success("Cart cleared");
       queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY });
-    },
-    onError: () => {
-      toast.error("Failed to clear cart");
     },
   });
 

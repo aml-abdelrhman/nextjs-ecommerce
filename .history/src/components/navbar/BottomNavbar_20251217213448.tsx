@@ -13,6 +13,8 @@ const links: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/productTab", label: "Shop" },
   { href: "/products", label: "Products" },
+  { href: "/About", label: "About" },
+  { href: "/ContactForm", label: "Contact" },
   { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },
   { href: "/help", label: "Help" },
