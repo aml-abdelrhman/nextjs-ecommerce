@@ -30,7 +30,6 @@ export default function ProductGrid() {
     maxPrice,
   });
 
-  // تحديث totalResults
   useEffect(() => {
     if (data?.total !== undefined) setTotalResults(data.total);
   }, [data, setTotalResults]);

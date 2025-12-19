@@ -10,7 +10,7 @@ export default function Pagination() {
 
   const getPageNumbers = () => {
     const delta = 1;
-    const range = [];
+    const range: number[] = []; // <-- حددنا نوع المصفوفة number[]
     for (let i = page - delta; i <= page + delta; i++) {
       if (i >= 1 && i <= totalPages) range.push(i);
     }

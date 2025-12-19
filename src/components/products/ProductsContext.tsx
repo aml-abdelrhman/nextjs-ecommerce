@@ -26,15 +26,15 @@ interface ProductsContextType {
 const ProductsContext = createContext<ProductsContextType | undefined>(undefined);
 
 export const ProductsProvider = ({ children }: { children: React.ReactNode }) => {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(12);
-  const [search, setSearch] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [sort, setSort] = useState("");
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(0);
-  const [totalResults, setTotalResults] = useState(0);
+  const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(12);
+  const [search, setSearch] = useState<string>("");
+  const [debouncedSearch, setDebouncedSearch] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [sort, setSort] = useState<string>("");
+  const [minPrice, setMinPrice] = useState<number>(0);
+  const [maxPrice, setMaxPrice] = useState<number>(0);
+  const [totalResults, setTotalResults] = useState<number>(0);
 
   return (
     <ProductsContext.Provider

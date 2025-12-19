@@ -8,7 +8,6 @@ import { WishlistItem } from "@/types/whishlist";
 const WISHLIST_QUERY_KEY = ["wishlist"];
 const STALE_TIME = 1000 * 60 * 5;
 
-// ---------------- API Fetch Helper ----------------
 async function apiFetch<T>(url: string, token: string | null, options?: RequestInit): Promise<T> {
   const headers: Record<string, string> = { "Content-Type": "application/json" };
   if (token) headers["Authorization"] = `Bearer ${token}`;
@@ -24,14 +23,12 @@ async function apiFetch<T>(url: string, token: string | null, options?: RequestI
   return res.json();
 }
 
-// ---------------- useWishlist Hook ----------------
 export function useWishlist() {
   const queryClient = useQueryClient();
   const { data: session, status } = useSession();
   const token = session?.user?.token || null;
   const isReady = !!token && status === "authenticated";
 
-  // -------- GET WISHLIST --------
   const { data: items = [], isLoading, isError } = useQuery<WishlistItem[]>({
     queryKey: WISHLIST_QUERY_KEY,
     queryFn: () => apiFetch<WishlistItem[]>("/api/wishlist", token),
@@ -40,7 +37,6 @@ export function useWishlist() {
     retry: 0,
   });
 
-  // -------- ADD ITEM --------
   const addItem = useMutation<WishlistItem[], Error, WishlistItem>({
     mutationFn: (item) =>
       apiFetch<WishlistItem[]>("/api/wishlist", token, {
@@ -53,7 +49,6 @@ export function useWishlist() {
     },
   });
 
-  // -------- REMOVE ITEM --------
   const removeItem = useMutation<WishlistItem[], Error, string>({
     mutationFn: (id) =>
       apiFetch<WishlistItem[]>("/api/wishlist", token, {
@@ -66,7 +61,6 @@ export function useWishlist() {
     },
   });
 
-  // -------- CLEAR WISHLIST --------
   const clearWishlist = useMutation<WishlistItem[], Error>({
     mutationFn: () =>
       apiFetch<WishlistItem[]>("/api/wishlist", token, { method: "DELETE", body: JSON.stringify({ clearAll: true }) }),
