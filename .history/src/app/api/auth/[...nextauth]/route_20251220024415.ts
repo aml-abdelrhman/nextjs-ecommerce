@@ -18,6 +18,7 @@ declare module "next-auth" {
     role: "user" | "admin";
     name: string;
     email: string;
+    picture?: string | null;
   }
 }
 
@@ -26,9 +27,13 @@ export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
-      credentials: { email: { label: "Email", type: "email" }, password: { label: "Password", type: "password" } },
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" }
+      },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) throw new Error("Email and password required");
+        if (!credentials?.email || !credentials?.password)
+          throw new Error("Email and password required");
 
         await dbConnect();
 
@@ -48,8 +53,8 @@ export const authOptions: AuthOptions = {
         }
 
         return { id: user._id.toString(), name: user.name, email: user.email, role };
-      },
-    }),
+      }
+    })
   ],
   callbacks: {
     async jwt({ token, user }) {
@@ -68,9 +73,10 @@ export const authOptions: AuthOptions = {
       session.user.email = token.email as string;
       session.user.token = token.id as string;
       return session;
-    },
+    }
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  pages: { signIn: "/login" },
+  secret: process.env.NEXTAUTH_SECRET
 };
 
 const handler = NextAuth(authOptions);
