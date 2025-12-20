@@ -5,7 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/validation/auth";
 import { z } from "zod";
-import { signIn } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import "@/styles/LoginPage.scss";
@@ -13,6 +14,7 @@ import "@/styles/LoginPage.scss";
 type LoginInput = z.infer<typeof loginSchema> & { remember?: boolean };
 
 export default function LoginPage() {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -44,15 +46,16 @@ export default function LoginPage() {
         return;
       }
 
-      toast.success("تم تسجيل الدخول بنجاح!");
+      toast.success("Logged in successfully!");
 
-      // حفظ الإيميل إذا تم تفعيل "تذكرني"
       if (data.remember) localStorage.setItem("rememberEmail", data.email);
       else localStorage.removeItem("rememberEmail");
 
-      // توجيه المستخدم حسب الرابط المحدد من NextAuth
-      if (res?.url) {
-        window.location.href = res.url;
+      const session = await getSession();
+      if (session?.user.role === "admin") {
+        router.push("/admin/dashboard");
+      } else {
+        router.push("/account");
       }
     } catch (err) {
       console.error(err);

@@ -17,7 +17,6 @@ export default function MainNavbar() {
     try {
       await signOut({ redirect: false });
       toast.success("Logged out successfully!");
-      window.location.href = "/login"; // توجه لصفحة login بعد الخروج
     } catch {
       toast.error("Logout failed. Please try again.");
     }
@@ -59,14 +58,12 @@ export default function MainNavbar() {
           {session?.user ? (
             <>
               <span className="username">Hi, {session.user.name ?? "User"}</span>
-
               <Link
                 href={role === "admin" ? "/admin/dashboard" : "/account/profile"}
                 className="accountBtn"
               >
                 <Settings size={18} /> Account
               </Link>
-
               <button onClick={handleLogout} className="logoutBtn">
                 <LogOut size={18} /> Logout
               </button>
@@ -76,7 +73,6 @@ export default function MainNavbar() {
               <User /> Login
             </Link>
           )}
-
           <Link href="/ContactForm" className="contactBtn">
             <Mail /> Send Message
           </Link>
