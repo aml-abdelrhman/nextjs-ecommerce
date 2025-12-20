@@ -46,7 +46,7 @@ export default function MainNavbar() {
       </Link>
 
       <div className="right">
-        <div className="iconsBar">
+        <div className="icons">
           <Link href="/wishlist" className="iconWrapper" aria-label="Wishlist">
             <Heart />
             {wishlistCount > 0 && <span className="badge">{wishlistCount}</span>}
@@ -57,38 +57,54 @@ export default function MainNavbar() {
             {cartCount > 0 && <span className="badge">{cartCount}</span>}
           </Link>
 
-          <Link href="/contact" className="iconWrapper contactIcon" aria-label="Contact">
+          <Link
+            href="/ContactForm"
+            className="iconWrapper contactIcon"
+            aria-label="Contact"
+          >
             <Mail />
           </Link>
-
-          {!session?.user && (
-            <Link href="/login" className="iconWrapper" aria-label="Login">
-              <User />
-            </Link>
-          )}
         </div>
 
-        <div className="actions desktopOnly">
-          {session?.user && (
+        <div className="actions">
+          {session?.user ? (
             <>
-              <span className="username">
+              <span className="username desktopOnly">
                 Hi, {session.user.name ?? "User"}
               </span>
 
               <Link
-                href={role === "admin" ? "/admin/dashboard" : "/account/profile"}
-                className="actionBtn"
+                href={role === "admin"
+                  ? "/admin/dashboard"
+                  : "/account/profile"}
+                className="actionBtn desktopOnly"
               >
                 <Settings size={18} />
                 <span>Account</span>
               </Link>
 
-              <button onClick={handleLogout} className="actionBtn danger">
+              <button
+                onClick={handleLogout}
+                className="actionBtn danger desktopOnly"
+              >
                 <LogOut size={18} />
                 <span>Logout</span>
               </button>
             </>
+          ) : (
+            <Link href="/login" className="actionBtn desktopOnly">
+              <User size={18} />
+              <span>Login</span>
+            </Link>
           )}
+            <Link
+            href="/contact"
+  className="iconWrapper contactIcon"
+  aria-label="Contact"
+>
+  <Mail />
+</Link>
+
         </div>
       </div>
     </nav>

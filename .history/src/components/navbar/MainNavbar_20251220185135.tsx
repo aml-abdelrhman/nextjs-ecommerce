@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useAppSelector } from "@/store/hooks";
 import { useSession, signOut } from "next-auth/react";
 import toast from "react-hot-toast";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import "@/styles/navbar.scss";
 import {
   Mail,
@@ -13,12 +13,15 @@ import {
   ShoppingCart,
   LogOut,
   Settings,
+  Menu,
+  X,
 } from "lucide-react";
 
 export default function MainNavbar() {
   const { data: session, status } = useSession();
   const cartCount = useAppSelector(s => s.cart?.count ?? 0);
   const wishlistCount = useAppSelector(s => s.wishlist?.count ?? 0);
+  const [open, setOpen] = useState(false);
 
   const handleLogout = useCallback(async () => {
     try {
@@ -45,50 +48,48 @@ export default function MainNavbar() {
         <span>ONLINE STORE</span>
       </Link>
 
-      <div className="right">
-        <div className="iconsBar">
-          <Link href="/wishlist" className="iconWrapper" aria-label="Wishlist">
+      <button className="menuBtn" onClick={() => setOpen(!open)}>
+        {open ? <X size={26} /> : <Menu size={26} />}
+      </button>
+
+      <div className={`navContent ${open ? "open" : ""}`}>
+        <div className="icons">
+          <Link href="/wishlist" className="iconWrapper">
             <Heart />
             {wishlistCount > 0 && <span className="badge">{wishlistCount}</span>}
           </Link>
 
-          <Link href="/cart" className="iconWrapper" aria-label="Cart">
+          <Link href="/cart" className="iconWrapper">
             <ShoppingCart />
             {cartCount > 0 && <span className="badge">{cartCount}</span>}
           </Link>
-
-          <Link href="/contact" className="iconWrapper contactIcon" aria-label="Contact">
-            <Mail />
-          </Link>
-
-          {!session?.user && (
-            <Link href="/login" className="iconWrapper" aria-label="Login">
-              <User />
-            </Link>
-          )}
         </div>
 
-        <div className="actions desktopOnly">
-          {session?.user && (
+        <div className="actions">
+          {session?.user ? (
             <>
               <span className="username">
                 Hi, {session.user.name ?? "User"}
               </span>
-
               <Link
                 href={role === "admin" ? "/admin/dashboard" : "/account/profile"}
-                className="actionBtn"
+                className="accountBtn"
               >
-                <Settings size={18} />
-                <span>Account</span>
+                <Settings size={18} /> Account
               </Link>
-
-              <button onClick={handleLogout} className="actionBtn danger">
-                <LogOut size={18} />
-                <span>Logout</span>
+              <button onClick={handleLogout} className="logoutBtn">
+                <LogOut size={18} /> Logout
               </button>
             </>
+          ) : (
+            <Link href="/login" className="loginBtn">
+              <User /> Login
+            </Link>
           )}
+
+          <Link href="/ContactForm" className="contactBtn">
+            <Mail /> Send Message
+          </Link>
         </div>
       </div>
     </nav>

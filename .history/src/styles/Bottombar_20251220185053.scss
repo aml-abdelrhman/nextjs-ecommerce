@@ -8,8 +8,7 @@
 
 .bottombarContainer {
   max-width: 1200px;
- margin: 0 auto;
-  padding: 0 1.6rem;
+  margin: auto;
 }
 
 .topRow {
@@ -18,21 +17,10 @@
   justify-content: space-between;
 }
 
-.bottombarInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.bottombarSlogan {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #f3f4f6;
-}
-
-.bottombarCopy {
-  font-size: 0.8rem;
-  color: #9ca3af;
+.bottombarLogo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: $color-orange;
 }
 
 .bottombarMenuBtn {
@@ -54,7 +42,7 @@
   gap: 1.5rem;
 
   a {
-    color: #d1d5db;
+    color: #ddd;
     font-weight: 500;
 
     &:hover {
@@ -69,20 +57,10 @@
 
   a {
     color: #fff;
-
-    
-     &:hover {
-      color: $color-orange;
-    }
   }
 }
 
 @media (max-width: 768px) {
-
-  .bottombarContainer {
-    padding: 0 1rem;
-  }
-  
   .bottombarMenuBtn {
     display: block;
   }

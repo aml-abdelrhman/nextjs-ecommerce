@@ -1,0 +1,115 @@
+@import "@/styles/globals.scss";
+
+.main {
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+
+  span {
+    color: $color-orange;
+  }
+}
+
+.menuBtn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navContent {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.icons {
+  display: flex;
+  gap: 1rem;
+
+  .iconWrapper {
+    position: relative;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: red;
+      color: #fff;
+      font-size: 10px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  a,
+  button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .logoutBtn {
+    color: #d63031;
+  }
+}
+
+@media (max-width: 992px) {
+  .menuBtn {
+    display: block;
+  }
+
+  .navContent {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+    display: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .navContent.open {
+    display: flex;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+}

@@ -29,7 +29,8 @@ const BottomNavbar = () => {
       <div className="bottombarContainer">
         <div className="topRow">
           <div className="bottombarInfo">
-            <span className="bottombarSlogan">Professional Online Shopping Platform</span>
+            <span className="bottombarSlogan">Shop Smart. Shop Online.</span>
+            <span className="bottombarCopy">© 2025 Online Store</span>
           </div>
 
           <button

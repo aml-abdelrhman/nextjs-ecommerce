@@ -8,8 +8,7 @@
 
 .bottombarContainer {
   max-width: 1200px;
- margin: 0 auto;
-  padding: 0 1.6rem;
+  margin: auto;
 }
 
 .topRow {
@@ -78,11 +77,6 @@
 }
 
 @media (max-width: 768px) {
-
-  .bottombarContainer {
-    padding: 0 1rem;
-  }
-  
   .bottombarMenuBtn {
     display: block;
   }

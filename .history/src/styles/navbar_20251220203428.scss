@@ -7,8 +7,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
- 
- 
 }
 
 .logo {
@@ -50,7 +48,7 @@
   }
 
   &:hover {
-    background: $color-orange;
+    background: #f3f4f6;
   }
 
   .badge {
@@ -115,7 +113,6 @@
 }
 
 @media (max-width: 768px) {
-  
   .desktopOnly {
     display: none;
   }
@@ -129,7 +126,7 @@
   }
 
   .iconsBar {
-    gap: 0.1rem;
+    gap: 0.6rem;
   }
 
   .iconWrapper {

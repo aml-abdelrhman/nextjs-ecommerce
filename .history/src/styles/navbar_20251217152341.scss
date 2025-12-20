@@ -1,0 +1,119 @@
+@import "@/styles/globals.scss";
+
+.main {
+  background: #fffdfd;
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid #a39f9f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.logo {
+  font-size: 1.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-right: 1.2rem;
+
+  span {
+    color: $color-orange;
+  }
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  .iconWrapper {
+    position: relative;
+    cursor: pointer;
+
+    svg {
+      width: 26px;
+      height: 26px;
+      color: #333;
+      transition: transform 0.2s, color 0.2s;
+
+      &:hover {
+        transform: scale(1.15);
+        color: $color-orange;
+      }
+    }
+
+    .badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background-color: red;
+      color: white;
+      font-size: 10px;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: nowrap;
+  color: #333;
+
+  a,
+  button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &:hover {
+      color: $color-orange;
+    }
+  }
+
+  .logoutBtn {
+    color: #d63031;
+
+    &:hover {
+      color: #ff4d4d;
+    }
+  }
+
+  .loginBtn,
+  .contactBtn,
+  .accountBtn {
+    color: #333;
+
+    &:hover {
+      color: $color-orange;
+    }
+  }
+
+  .username {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #444;
+  }
+}

@@ -28,9 +28,9 @@ const BottomNavbar = () => {
     <nav className="bottombar">
       <div className="bottombarContainer">
         <div className="topRow">
-          <div className="bottombarInfo">
-            <span className="bottombarSlogan">Professional Online Shopping Platform</span>
-          </div>
+          <Link href="/" className="bottombarLogo">
+            ONLINE STORE
+          </Link>
 
           <button
             className="bottombarMenuBtn"

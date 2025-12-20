@@ -1,0 +1,92 @@
+@import "@/styles/globals.scss";
+
+.main {
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+
+  span {
+    color: $color-orange;
+  }
+}
+
+.icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.iconWrapper {
+  position: relative;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: red;
+    color: #fff;
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  a,
+  button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .logoutBtn {
+    color: #d63031;
+  }
+}
+
+.hideOnMobile {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 0.8rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .actions {
+    gap: 0.4rem;
+  }
+
+  .hideOnMobile {
+    display: none;
+  }
+}
