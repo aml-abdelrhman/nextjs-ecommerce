@@ -7,7 +7,6 @@ import { loginSchema } from "@/validation/auth";
 import { z } from "zod";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import toast from "react-hot-toast";
 import "@/styles/LoginPage.scss";
 
 type LoginInput = z.infer<typeof loginSchema> & { remember?: boolean };
@@ -38,18 +37,12 @@ export default function LoginPage() {
 
       const callbackUrl = data.email.includes("admin") ? "/admin/dashboard" : "/account";
 
-      const result = await signIn("credentials", {
+      await signIn("credentials", {
         redirect: false,
         email: data.email,
         password: data.password,
+        callbackUrl,
       });
-
-      if (result?.error) {
-        toast.error(result.error);
-      } else {
-        toast.success("تم تسجيل الدخول بنجاح!");
-        window.location.href = callbackUrl;
-      }
     } finally {
       setLoading(false);
     }
@@ -60,24 +53,33 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit(onSubmit)} className="loginForm">
         <h1 className="loginTitle">Login</h1>
         <div>
+          <label htmlFor="email" className="sr-only">Email Address</label>
           <input
             id="email"
             type="email"
             placeholder="Email Address"
             {...register("email")}
             className={`inputField ${errors.email ? "inputError" : ""}`}
+            aria-invalid={errors.email ? "true" : "false"}
           />
           {errors.email && <p className="errorMsg">{errors.email.message}</p>}
         </div>
         <div className="passwordWrapper">
+          <label htmlFor="password" className="sr-only">Password</label>
           <input
             id="password"
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             {...register("password")}
             className={`inputField ${errors.password ? "inputError" : ""}`}
+            aria-invalid={errors.password ? "true" : "false"}
           />
-          <button type="button" onClick={toggleShowPassword} className="togglePassword">
+          <button
+            type="button"
+            onClick={toggleShowPassword}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+            className="togglePassword"
+          >
             {showPassword ? "Hide" : "Show"}
           </button>
           {errors.password && <p className="errorMsg">{errors.password.message}</p>}
